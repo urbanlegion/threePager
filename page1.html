@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Page One</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index3.css">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div id="ball_wrapper" class="absolute-center">
+            <div id="ball"><span>Devised By:<br>Erez<br>Tall</span></div>
+            <div class="row button_row">
+                <button class="singlebutton btn btn-warning center-block">Bounce!</button>
+                <button class="singlebutton btn btn-danger center-block">Stop Bouncing!!</button>
+                <button style="opacity: 0;" class="singlebutton btn btn-success center-block">Next Page!</button>
+            </div>
+            <div class="row color_row">
+                <input id="red" type="color" value="#afdbcf" placeholder="PickMe" class="singlebutton center-block">
+                <input id="green" type="color" value="#91cc9a" placeholder="PickMe" class="singlebutton center-block">
+                <input id="blue" type="color" value="#ff5d5d" placeholder="PickMe" class="singlebutton center-block">
+                <input id="blender" type="submit" value="Fill" class="singlebutton center-block">
+            </div>
+        </div>
+    </div>
+</div>
+<audio id="myVideo" controls style="display:none">
+    <source src="audio/1-07-approaching-target-2.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+<script src="js/jquery.min.js"></script>
+<script>
+    var vid = document.getElementById('myVideo');
+    var fill = $('#blender');
+    var colorButtons = $('.color_row>input:not(:last-child)');
+    var r, g, b;
+    $(document).ready(function () {
+        var colorArray = [r, g, b];
+        //make colors shift
+        fill.on('click', function (r, g, b) {
+            r = $('.color_row input:nth-child(1)').val();
+            g = $('.color_row input:nth-child(2)').val();
+            b = $('.color_row input:nth-child(3)').val();
+            colorArray = [r, g, b];
+            var curColorIndex = -1;
+
+            setInterval(function () {
+                ++curColorIndex;
+                if (curColorIndex >= colorArray.length) {
+                    curColorIndex = 0;
+                }
+                console.log('colorArray[' + curColorIndex + ']): ' + colorArray[curColorIndex]);
+                $('#ball').css({'background': colorArray[curColorIndex]});
+            }, 1000);
+            console.log('r equals: ' + r);
+            console.log('g equals: ' + g);
+            console.log('b equals: ' + b);
+        });
+
+        $('.btn-danger').on('mouseover mouseout', function (e) {
+            $('body').toggleClass("full_background1");
+            $(this).addClass("shadowfilter");
+        });
+
+        $('.btn-success').on('mouseover mouseout', function (e) {
+            $(this).addClass("shadowfilter");
+        });
+
+        $('.btn-warning').on('mouseover mouseout', function (e) {
+            $(this).addClass("shadowfilter");
+        });
+
+        $(this).on('click', function (e) {
+            var targetElement = $(e.target);
+            //var targetClasses = e.target.classList;
+            var targetId = e.target.id;
+            //console.log('we have: '+targetClass+' classes with the ID: '+targetId);
+            //directs
+            if (targetElement.hasClass('btn-danger')) {
+                $('body').removeClass('full_background');
+                //console.log('exists!');
+                //console.log('and the classes are: '+targetClasses/*[1]*/);
+                $('#ball').css({
+                    '-webkit-animation:': 'none',
+                    '-moz-animation': 'none',
+                    '-o-animation': 'none',
+                    '-ms-animation': 'none',
+                    'animation': 'none'
+                }).animate({
+                    opacity: 0.2
+                }, 300);
+                if ($('audio')) {
+                    vid.pause();
+                }
+            } else if (targetElement.hasClass('btn-warning')) {
+                vid.play();
+                $('.btn-success').delay(8000).animate({
+                    opacity: 1
+                }, 6000);
+
+                $('body').addClass('full_background')/*.append('<audio id="myVideo" autoplay controls style="display:none">'
+                 +'<source src="audio/01-mission-1-ken-oh-.mp3" type="audio/mpeg">'
+                 +'Your browser does not support the audio element.'
+                 +'</audio>')*/;
+                $('.container').css({background: 'yellow'});
+                $('#ball').css({
+                    '-webkit-animation:': 'jump 1s infinite',
+                    '-moz-animation': 'jump 1s infinite',
+                    '-o-animation': 'jump 1s infinite',
+                    '-ms-animation': 'jump 1s infinite',
+                    'animation': 'jump 1s infinite'
+                }).animate({
+                    opacity: 1
+                }, 300);
+                $('.color_row').css({
+                    position: 'absolute'
+                }, 800);
+            } else if (targetId == 'ball') {
+                console.log('yesh, zis iz ze ball');
+            } else if (targetElement.hasClass('btn-success')) {
+                window.location.replace("page2.html");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

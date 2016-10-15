@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>page 5</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index5.css">
+</head>
+<body class="full_background">
+<div class=""></div>
+<div class="container">
+    <div class="row">
+        <div class="title" style="display: inline;">PHP Questions</div><button id="buttonTop" class="btn btn-primary btn-block">Show PHP Questions & Answers</button>
+        <h1>Q: Which is a better syntax for if condition, and why?</h1>
+        <p>a. if ("John" == $name)</p>
+        <p>b. if ($name == "John")</p>
+        <h1>Answer</h1>
+        <p>Let's start by saying that it 100% works, yet I would have to say that B is the correct answer,
+            not only because it's considered best practice but i'm just assuming that
+            the compiler plays some part here when it's
+            looking for a var that contains the string "John", while in B, the compiler already has the
+            var to check if it contains the string "John", that's my unchecked assumption. </p>
+        <p> Moreover, language as in any language, has certain syntax boundaries, not only for compilers but
+            for other human coders as well. While no coder has ever asked "if the chocolate is cake",
+            many coders do ask "if the cake is chocolate", common practice.</p>
+
+        <hr>
+        <h1>Q: What would be the output of the following class</h1>
+        <pre class="prettyprint" lang-html>
+class student{
+    protected $name;
+    protected $lastName;
+
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function setLastName($lastName){
+        $this->lastName = $lastName;
+    }
+
+    public static function getName(){
+        return $this->name;
+    }
+
+    public static function getLastName(){
+        return $this->lastName;
+    }
+}
+        </pre>
+        <h1>And the following script:</h1>
+        <pre class="prettyprint" lang-php>
+$student = new student()
+$student->setName('John');
+$student->SetLastName('Doe');
+$fullName = $student->getName.' '.$student->getLastName();
+        </pre>
+        <h1>Answer</h1>
+        <p>You cannot use the $this on a static method since
+        static methods don't have objects associated with them.
+        What would work perfectly would be using the
+            <a href="http://php.net/manual/en/language.oop5.paamayim-nekudotayim.php">'paamayim nekudotiam'</a>
+        to call these methods, but then again, a static method would have to be something <strong>un-dynamic</strong> (as it's called: static)
+        such as a constant, even date/time (even though time changes, it would always show "a time" and not any
+            other inter-changeable or conditional event driven result, it would stay as a time result.</p>
+        <p>Judging by the nature of this class, it is supposed to be dynamic, hence I would remove the static
+        keyword from both methods and happily use $this to call them from the object instantiated.</p>
+        '<button class="singlebutton btn btn-success center-block">Back to Beginning</button>'
+    </div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $(this).on('click', function (e) {
+            var elem = e.target;
+            var elemento = $(e.target);
+            if(elem.id=='buttonTop'){
+                $('.container').animate({
+                    marginTop: 0,
+                    height: '100%'
+                },800, function () {
+                    $(this).css({'overflow': 'auto'});
+                    $('#buttonTop').slideUp(300, function () {
+                        $(this).remove();
+                    });
+                });
+            }else if(elemento.hasClass('btn-success')) {
+                window.location.replace("page1.html");
+            }
+        });
+    });
+    //Mouse hover scope:
+    $('').on('mouseover mouseout', function (e) {
+        //console.log(element);
+    });
+</script>
+<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>
+</body>
+</html>

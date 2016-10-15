@@ -1,0 +1,91 @@
+/*@import "index3.css";*/
+@import url('https://fonts.googleapis.com/css?family=Josefin+Sans:100,300,400,700');
+@import url('https://fonts.googleapis.com/css?family=Rock+Salt');
+@import url('https://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,300,400,700,900');
+
+
+h1,h2,h3{
+    color: white;
+    font-weight:700;
+}
+p{
+    font-weight: 600;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 165%;
+}
+.output{
+    margin-top: 10px;/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+0,ffffff+62&1+0,0+100 */
+    background: -moz-linear-gradient(left,  rgba(30,87,153,1) 0%, rgba(255,255,255,0.38) 62%, rgba(255,255,255,0) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,  rgba(30,87,153,1) 0%,rgba(255,255,255,0.38) 62%,rgba(255,255,255,0) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,  rgba(30,87,153,1) 0%,rgba(255,255,255,0.38) 62%,rgba(255,255,255,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#00ffffff',GradientType=1 ); /* IE6-9 */
+
+}
+#info {
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.boxy {
+    height:50px;
+    width:50px;
+    background: green;
+    float: left;
+    border:1px black solid;
+}
+.container{
+    background-color: #d43824;
+    height:100%;
+    padding:25px;
+}
+.singlebutton{
+    position: relative;
+    display: block;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    border-radius: 0;
+    height: 70px;
+    min-width: 250px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 40px;
+}
+.container-filled{
+    z-index: 10;
+    background-color: orangered;
+    width:100%;
+    opacity:0.8;
+}
+.videoWrapper{
+    position: fixed;
+    z-index: -99;
+    width: 120%;
+    height: 120%;
+    pointer-events: none;
+}
+iframe{
+    padding: 0 ;
+    margin-top: -60px;
+    height:110%;
+    width:105%;
+    margin-left: -30px;
+    overflow: hidden;
+
+}
+.opacityWrapper {
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffff;
+    opacity: 0.75;
+}
+.opacityFull{
+    opacity:1;
+}
+.opacityNone{
+    opacity: 0;
+
+}

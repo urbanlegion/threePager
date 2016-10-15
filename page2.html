@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--CSS-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index4.css">
+</head>
+<body>
+<div class="videoWrapper" style="position: fixed; z-index: -99; width: 100%; height: 100%; pointer-events: none;">
+    <iframe id="ytplayer" frameborder="0" height="100%" width="100%"
+            src="https://www.youtube.com/embed/UGPuEDyAsU8?rel=0&autoplay=1&loop=1&playlist=UGPuEDyAsU8&start=7&controls=0&showinfo=0&autohide=1&fs=1&autohide=2 mute=1">
+    </iframe>
+</div>
+<div class="container">
+    <div class="row">
+        <h1>Strings and Calls</h1>
+        <h2>Hello Yariv</h2>
+        <p>Enjoy watching Nasa's live space station feed in the background. Press F11 for a full blasted experience</p>
+        <p>Please use the following buttons</p>
+        <button id="ajax_caller">call ajax</button>
+        <button id="video_remover" value="">remove video background</button>
+        <div id="info"></div>
+    </div>
+</div>
+<div class="opacityWrapper"></div>
+<script src="js/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script>
+
+    $(document).ready(function () {
+        $(this).on('click', function (e) {
+            var targetElement = $(e.target);
+            var elem = e.target;
+            // console.log('clicked on: ' + element);
+            if (elem.id == 'ajax_caller') {
+                $('#ajax_caller').prop('disabled', true).css({'opacity': 0.25});
+                function sortJson(a, b) {
+                    return a.title > b.title ? 1 : -1;
+                }
+
+                //console.log('ajax_caller has been clicked');
+                //e.preventDefault();
+                var src = 'http://jsonplaceholder.typicode.com/todos';
+                $.getJSON(src, function (data) {
+                    data = $(data).sort(sortJson);
+                    $.each(data, function (k, v) {
+                        var lastLetter = v.title.length;
+                        if (v.title[0] == 's') {
+                            $("#info").append('<div>' + v.title + '</div>');
+                        } else if (v.title[lastLetter - 1] == 'e') {
+                            $("#info").append('<div class="output">' + v.title + '</div>');
+                        }
+                    });
+                    $("#info").append('' +
+                            '<hr>' +
+                            '<h1>The disadvantage of the MVC pattern</h1>' +
+                            '<p>The MVC pattern was built primarily as a UI serving pattern, the fallbacks are ' +
+                            'mainly the complexity of the design, due to event driven practices which ' +
+                            'add a tenfold in both production and debugging process\' which baloons the project cost. ' +
+                            'The MVC pattern also creates a deficiency in team work, while both UI teams and backend teams ' +
+                            ' have different tasks and sprints, they are held back at times due to the pattern\'s need ' +
+                            'to have teams progress at the same pace, due to controller/view methods that are bound to each other.</p>' +
+                            '<h1>Solution</h1>' +
+                            '<ul>' +
+                            '<li><p>Always check if there\'s really a need to spread MVC onto the whole project base.</p></li>' +
+                            '<li><p>Build around the business-logic/model and keep the MVC at bay to serve only view related elements/methods/attribs.</p></li>' +
+                            '</ul>' +
+                            '<button class="singlebutton btn btn-success center-block">Next Page!</button>'
+                    );
+                });
+            } else if (elem.id == "video_remover") {
+                $('.videoWrapper').remove();
+                $('.opacityWrapper').remove();
+                $('#video_remover').prop('disabled', true).css({'opacity': 0.25});
+            } else if (targetElement.hasClass('btn-success')) {
+                window.location.replace("page3.html");
+            }
+        });
+    });
+    //Mouse hover scopes:
+    $('.opacityWrapper').on('mouseover mouseout', function (e) {
+        //console.log(element);
+        $(this).toggleClass('opacityNone', 800);
+        $('.container').toggleClass('opacityNone', 800);
+    });
+
+    //document scope click
+    $(this).on('click', function (e) {
+        console.log('you\'re clicking on the: ' + e.target + ' element');
+    });
+</script>
+
+</body>
+</html>
