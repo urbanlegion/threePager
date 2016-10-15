@@ -31,6 +31,7 @@
 <script>
 
     $(document).ready(function () {
+        //document scope click
         $(this).on('click', function (e) {
             var targetElement = $(e.target);
             var elem = e.target;
@@ -40,7 +41,6 @@
                 function sortJson(a, b) {
                     return a.title > b.title ? 1 : -1;
                 }
-
                 //console.log('ajax_caller has been clicked');
                 //e.preventDefault();
                 var src = 'http://jsonplaceholder.typicode.com/todos';
@@ -80,16 +80,11 @@
             }
         });
     });
-    //Mouse hover scopes:
+    //Mouse hover scope:
     $('.opacityWrapper').on('mouseover mouseout', function (e) {
         //console.log(element);
         $(this).toggleClass('opacityNone', 800);
         $('.container').toggleClass('opacityNone', 800);
-    });
-
-    //document scope click
-    $(this).on('click', function (e) {
-        console.log('you\'re clicking on the: ' + e.target + ' element');
     });
 </script>
 

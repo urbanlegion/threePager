@@ -40,20 +40,23 @@
         var colorArray = [r, g, b];
         //make colors shift
         fill.on('click', function (r, g, b) {
+            $(this).prop("disabled", true).css({'background': '#C3C3C3'});
             r = $('.color_row input:nth-child(1)').val();
             g = $('.color_row input:nth-child(2)').val();
             b = $('.color_row input:nth-child(3)').val();
             colorArray = [r, g, b];
             var curColorIndex = -1;
-
-            setInterval(function () {
+            function myFn() {
+                console.log('starting Interval');
                 ++curColorIndex;
                 if (curColorIndex >= colorArray.length) {
                     curColorIndex = 0;
                 }
-                console.log('colorArray[' + curColorIndex + ']): ' + colorArray[curColorIndex]);
                 $('#ball').css({'background': colorArray[curColorIndex]});
-            }, 1000);
+            }
+            var myTimer = setInterval(myFn, 1000);
+            clearInterval(myTimer);
+            myTimer = setInterval(myFn, 1000);
             console.log('r equals: ' + r);
             console.log('g equals: ' + g);
             console.log('b equals: ' + b);
@@ -100,10 +103,7 @@
                     opacity: 1
                 }, 6000);
 
-                $('body').addClass('full_background')/*.append('<audio id="myVideo" autoplay controls style="display:none">'
-                 +'<source src="audio/01-mission-1-ken-oh-.mp3" type="audio/mpeg">'
-                 +'Your browser does not support the audio element.'
-                 +'</audio>')*/;
+                $('body').addClass('full_background');
                 $('.container').css({background: 'yellow'});
                 $('#ball').css({
                     '-webkit-animation:': 'jump 1s infinite',
