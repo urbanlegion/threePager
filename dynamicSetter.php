@@ -36,3 +36,11 @@ echo $lastName.' said we need to grab the getter by the setter and make america 
 echo '<pre>';
 print_r($user->actions);
 echo '</pre>';
+
+// array results:
+//    [zipcode] => 90210
+//    [fName] => Donald
+//    [lName] => Trump
+//    [alcohol] => strong
+
+
